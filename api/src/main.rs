@@ -1,7 +1,4 @@
-mod auth;
-mod db;
-
-use auth::Auth;
+use anyhow::{Context, Result};
 use axum::{
     Extension, Router,
     body::Body,
@@ -12,10 +9,58 @@ use axum::{
     serve,
 };
 use axum_extra::extract::CookieJar;
-use db::init_db;
+use jsonwebtoken::{Algorithm, DecodingKey, Validation, decode, errors::ErrorKind};
 use serde::Deserialize;
-use std::{net::SocketAddr, sync::Arc};
+use std::{env, net::SocketAddr, sync::Arc};
 use tokio::net::TcpListener;
+use tower_http::cors::CorsLayer;
+
+pub enum AuthError {
+    MissingToken,
+    ExpiredToken,
+    InvalidToken,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Claims {
+    pub sub: String,
+    //pub exp: usize,
+}
+
+pub struct Auth {
+    decoding_key: DecodingKey,
+}
+
+impl Auth {
+    pub fn new() -> anyhow::Result<Self> {
+        let jwt_secret =
+            env::var("JWT_SECRET").context("Environment variable JWT_SECRET not set!")?;
+
+        Ok(Self {
+            decoding_key: DecodingKey::from_secret(jwt_secret.as_bytes()),
+        })
+    }
+
+    pub fn validate(&self, jar: &CookieJar) -> Result<String, AuthError> {
+        let token = match jar.get("access_token") {
+            Some(c) => c.value().to_string(),
+            None => return Err(AuthError::MissingToken),
+        };
+
+        let mut validation = Validation::new(Algorithm::HS256);
+        validation.validate_exp = true;
+
+        let token_data = match decode::<Claims>(&token, &self.decoding_key, &validation) {
+            Ok(data) => data,
+            Err(err) => match *err.kind() {
+                ErrorKind::ExpiredSignature => return Err(AuthError::ExpiredToken),
+                _ => return Err(AuthError::InvalidToken),
+            },
+        };
+
+        Ok(token_data.claims.sub)
+    }
+}
 
 #[derive(Clone)]
 struct AppState {

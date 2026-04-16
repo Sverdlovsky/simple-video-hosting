@@ -1,6 +1,6 @@
-CREATE DB SVH;
-CREATE USER SVH_User WITH PASSWORD 'SET_YOUR_PASSWORD';
-ALTER DATABASE SVH OWNER TO SVH_User;
+CREATE DB svh_db;
+CREATE USER svh_user WITH PASSWORD 'SET_YOUR_PASSWORD';
+ALTER DATABASE svh_db OWNER TO svh_user;
 
 
 CREATE TABLE Users (
@@ -158,7 +158,7 @@ BEGIN
                 p_kind IS NULL
                 OR
                 v.kind = CASE p_kind
-                    WHEN 'video' THEN 0
+                    WHEN 'full' THEN 0
                     WHEN 'clip' THEN 1
                     WHEN 'short' THEN 2
                 END

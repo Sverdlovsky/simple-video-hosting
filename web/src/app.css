@@ -43,7 +43,7 @@ body {
     @media (orientation: landscape) {
         flex-direction: row;
     }
-    background-color: var(--neu1);
+    background-color: black;
     color: var(--neu8);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
