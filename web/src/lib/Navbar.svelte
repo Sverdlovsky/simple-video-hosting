@@ -84,7 +84,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid #222222;
+    border-bottom: 1px solid var(--color-zinc-900);
     align-items: center;
   }
 
@@ -108,7 +108,7 @@
     gap: 8px;
     align-items: center;
     text-decoration: none;
-    color: white;
+    color: var(--color-white);
   }
 
   .title img {
@@ -117,8 +117,9 @@
   }
 
   .title p {
-    font-size: 24px;
+    font-size: var(--text-2xl);
     line-height: 0px;
+    font-weight: var(--font-weight-medium);
   }
 
   .actions {
@@ -131,9 +132,9 @@
     flex-direction: row;
     gap: 4px;
     align-items: center;
-    background-color: white;
+    background-color: var(--color-zinc-200);
     border: none;
-    border-radius: 20px;
+    border-radius: calc(infinity * 1px);
     padding: 4px 24px 4px 16px;
     margin: 4px 8px;
   }
@@ -141,12 +142,12 @@
   .add img {
     width: 16px;
     height: 16px;
-    color: black;
+    color: var(--color-black);
   }
 
   .add p {
     font-size: 16px;
-    color: black;
+    color: var(--color-black);
     line-height: 0px;
   }
 
@@ -155,8 +156,12 @@
     flex-direction: row;
     gap: 4px;
     align-items: center;
-    background-color: #222222;
-    border-radius: 20px;
+    background-color: color-mix(
+      in oklab,
+      var(--color-zinc-900) 50%,
+      transparent
+    );
+    border-radius: calc(infinity * 1px);
     padding: 4px 24px 4px 16px;
     margin: 4px 8px;
   }
@@ -164,13 +169,14 @@
   .sign img {
     width: 16px;
     height: 16px;
-    color: #444444;
+    color: var(--color-zinc-400);
   }
 
   .sign p {
-    font-size: 16px;
-    color: #444444;
-    line-height: 0px;
+    color: var(--color-zinc-400);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
   }
 
   .search {
@@ -178,9 +184,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: var(--input-background);
-    border: 1px solid var(--border);
-    border-radius: 25px;
+    background-color: color-mix(
+      in oklab,
+      var(--color-zinc-900) 50%,
+      transparent
+    );
+    border: 1px solid color-mix(in oklab, var(--ring) 50%, transparent);
+    border-radius: calc(infinity * 1px);
     flex-direction: row;
     align-items: center;
   }
@@ -188,7 +198,7 @@
   .search img {
     width: 20px;
     height: 20px;
-    color: #444444;
+    color: var(--color-zinc-500);
     padding: 14px;
   }
 
@@ -199,7 +209,7 @@
     border: none;
     outline: none;
     font-size: 16px;
-    color: white;
+    color: var(--color-zinc-200);
   }
 
   .categories {
@@ -212,16 +222,18 @@
 
   .categories button {
     border: none;
-    border-radius: 20px;
+    border-radius: calc(infinity * 1px);
     padding: 4px 24px 4px 16px;
     margin: 4px 8px;
-    background-color: #222222;
-    color: #444444;
+    background-color: var(--color-zinc-900);
+    color: var(--color-zinc-400);
     text-decoration: none;
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
   }
 
   .categories button:active {
-    background-color: white;
-    color: black;
+    background-color: var(--color-white);
+    color: var(--color-black);
   }
 </style>
