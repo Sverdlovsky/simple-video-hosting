@@ -3,15 +3,16 @@ use axum::{
     Extension, Router,
     body::Body,
     extract::{Path, Query},
-    http::StatusCode,
+    http::{HeaderValue, Method, StatusCode, header},
     response::{IntoResponse, Json, Response},
-    routing::get,
+    routing::{get, post},
     serve,
 };
 use axum_extra::extract::CookieJar;
 use jsonwebtoken::{Algorithm, DecodingKey, Validation, decode, errors::ErrorKind};
 use serde::Deserialize;
-use std::{env, net::SocketAddr, sync::Arc};
+use sqlx::postgres::PgPoolOptions;
+use std::{env, net::SocketAddr, sync::Arc, time::Duration};
 use tokio::net::TcpListener;
 use tower_http::cors::CorsLayer;
 
@@ -83,17 +84,35 @@ struct QueryParams {
 async fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt::init();
 
+    let dsn = env::var("DATABASE_URL").context("Environment variable DATABASE_URL not set!")?;
+    let pool = PgPoolOptions::new()
+        .max_connections(num_cpus::get() as u32 * 2)
+        .idle_timeout(Duration::from_secs(300))
+        .connect(dsn.as_str())
+        .await
+        .context("Failed to connect to Postgres")?;
+
     let state = AppState {
-        db: init_db().await?,
+        db: pool,
         auth: Arc::new(Auth::new()?),
     };
+
+    let cors = CorsLayer::new()
+        .allow_origin([
+            "https://zenime.su".parse::<HeaderValue>().unwrap(),
+            "https://learn.zenime.su".parse::<HeaderValue>().unwrap(),
+        ])
+        .allow_credentials(true)
+        .allow_methods([Method::GET, Method::POST])
+        .allow_headers([header::CONTENT_TYPE]);
 
     let app = Router::new()
         .route("/api/videos", get(videos))
         .route("/video/get/{filename}", get(get_video))
-        .layer(Extension(Arc::new(state)));
+        .layer(Extension(Arc::new(state)))
+        .layer(cors);
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8007));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
 
     let listener = TcpListener::bind(addr).await?;
 
@@ -143,9 +162,11 @@ async fn get_video(
     Extension(state): Extension<Arc<AppState>>,
     Path(filename): Path<String>,
 ) -> impl IntoResponse {
-    let email = match state.auth.force_validate(&jar) {
+    let email = match state.auth.validate(&jar) {
         Ok(email) => email,
-        Err(resp) => return resp,
+        Err(_) => {
+            return (StatusCode::UNAUTHORIZED).into_response();
+        }
     };
 
     let uuid_str = filename.strip_suffix(".mp4").unwrap_or(&filename);
