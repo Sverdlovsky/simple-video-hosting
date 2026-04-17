@@ -41,7 +41,7 @@
 <div class="navbar">
   <div class="navbox">
     <div class="top">
-      <a href="/" id="title">
+      <a href="/" class="title">
         <img src="/svg/favicon.svg" alt=">" />
         <p>${title}</p>
       </a>

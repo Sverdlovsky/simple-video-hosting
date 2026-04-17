@@ -1,19 +1,13 @@
 <script lang="ts">
-    import "../app.css";
-    import Navbar from "$lib/Navbar.svelte";
-    import { browser } from "$app/environment";
-    import { domain } from "$lib/stores";
+  import "../app.css";
+  import Navbar from "$lib/Navbar.svelte";
 
-    if (browser) {
-        domain.set(window.location.hostname.split(".").slice(-2).join("."));
-    } else {
-        domain.set("example.com");
-    }
+  const title: string = window.location.hostname.split(".")[0];
 </script>
 
 <svelte:head>
-    <link rel="icon" href={`https://media.${$domain}/icons/logo.png`} />
-    <title>Video</title>
+  <link rel="icon" href="/svg/favicon.png" />
+  <title>${title}</title>
 </svelte:head>
 
 <Navbar />
