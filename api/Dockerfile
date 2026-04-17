@@ -16,7 +16,8 @@ COPY Cargo.lock .
 
 RUN cargo build --release
 
-RUN rm -r target/release/svh
+RUN cargo clean -p svh
+
 RUN rm -r src
 COPY src src
 
