@@ -18,7 +18,7 @@ RUN npm run build
 
 FROM docker.io/library/nginx:1.29.6-alpine3.23
 
-COPY --from=build /srv/web /var/www/html/default
+COPY --from=build /srv/web/build /var/www/html/default
 
 COPY nginx.conf /etc/nginx/templates/default.conf.template
 
