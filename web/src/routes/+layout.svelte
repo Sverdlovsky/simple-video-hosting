@@ -7,7 +7,7 @@
 
 <svelte:head>
   <link rel="icon" href="/svg/favicon.png" />
-  <title>${title}</title>
+  <title>{title}</title>
 </svelte:head>
 
 <Navbar />

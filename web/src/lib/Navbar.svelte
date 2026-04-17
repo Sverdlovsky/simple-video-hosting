@@ -178,8 +178,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: black;
-    border: 1px solid #222222;
+    background-color: var(--input-background);
+    border: 1px solid var(--border);
     border-radius: 25px;
     flex-direction: row;
     align-items: center;
