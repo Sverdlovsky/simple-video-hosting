@@ -43,7 +43,7 @@
     <div class="top">
       <a href="/" class="title">
         <img src="/svg/favicon.svg" alt=">" />
-        <p>${title}</p>
+        <p>{title}</p>
       </a>
       <div class="actions">
         <button class="add">
@@ -61,27 +61,38 @@
       <input type="text" bind:value={search} placeholder="Search..." />
     </div>
     <div class="categories">
-      <button onclick={() => (kind = "all")}> All </button>
-      <button onclick={() => (kind = "full")}> Fulls </button>
-      <button onclick={() => (kind = "clip")}> Clips </button>
-      <button onclick={() => (kind = "short")}> Shorts </button>
+      <button class:active={kind === "all"} onclick={() => (kind = "all")}>
+        All
+      </button>
+      <button class:active={kind === "full"} onclick={() => (kind = "full")}>
+        Fulls
+      </button>
+      <button class:active={kind === "clip"} onclick={() => (kind = "clip")}>
+        Clips
+      </button>
+      <button class:active={kind === "short"} onclick={() => (kind = "short")}>
+        Shorts
+      </button>
     </div>
   </div>
 </div>
 
 <style>
   .navbar {
-    width: 100%;
     z-index: 2;
+    position: fixed;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     border-bottom: 1px solid #222222;
+    align-items: center;
   }
 
   .navbox {
-    max-width: max(60%, 1440px);
+    width: calc(min(max(60%, 1440px), 100%) - 48px);
     display: flex;
-    flex-direction: columns;
-    margin: 16px;
+    flex-direction: column;
+    padding: 24px;
     gap: 16px;
   }
 
@@ -95,6 +106,9 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
+    align-items: center;
+    text-decoration: none;
+    color: white;
   }
 
   .title img {
@@ -103,7 +117,7 @@
   }
 
   .title p {
-    font-size: 32;
+    font-size: 24px;
     line-height: 0px;
   }
 
@@ -116,10 +130,12 @@
     display: flex;
     flex-direction: row;
     gap: 4px;
+    align-items: center;
     background-color: white;
+    border: none;
     border-radius: 20px;
-    padding: 4px 8px;
-    margin: 16px 8px;
+    padding: 4px 24px 4px 16px;
+    margin: 4px 8px;
   }
 
   .add img {
@@ -129,7 +145,7 @@
   }
 
   .add p {
-    font-size: 16;
+    font-size: 16px;
     color: black;
     line-height: 0px;
   }
@@ -138,18 +154,22 @@
     display: flex;
     flex-direction: row;
     gap: 4px;
+    align-items: center;
     background-color: #222222;
+    border-radius: 20px;
+    padding: 4px 24px 4px 16px;
+    margin: 4px 8px;
   }
 
   .sign img {
     width: 16px;
     height: 16px;
-    color: gray;
+    color: #444444;
   }
 
   .sign p {
-    font-size: 16;
-    color: gray;
+    font-size: 16px;
+    color: #444444;
     line-height: 0px;
   }
 
@@ -160,7 +180,7 @@
     justify-content: center;
     background-color: black;
     border: 1px solid #222222;
-    border-radius: 24px;
+    border-radius: 25px;
     flex-direction: row;
     align-items: center;
   }
@@ -168,17 +188,17 @@
   .search img {
     width: 20px;
     height: 20px;
-    color: gray;
+    color: #444444;
     padding: 14px;
   }
 
   .search input {
     width: 100%;
-    height: 48px;
+    height: 46px;
     background-color: transparent;
     border: none;
     outline: none;
-    font-size: 16;
+    font-size: 16px;
     color: white;
   }
 
@@ -188,5 +208,20 @@
     justify-content: start;
     overflow: scroll;
     gap: 8px;
+  }
+
+  .categories button {
+    border: none;
+    border-radius: 20px;
+    padding: 4px 24px 4px 16px;
+    margin: 4px 8px;
+    background-color: #222222;
+    color: #444444;
+    text-decoration: none;
+  }
+
+  .categories button:active {
+    background-color: white;
+    color: black;
   }
 </style>

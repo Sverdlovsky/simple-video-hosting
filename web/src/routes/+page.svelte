@@ -14,6 +14,8 @@
 <style>
   main {
     z-index: 1;
+    position: fixed;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,11 +24,13 @@
   }
 
   .videos {
-    max-width: max(60%, 1440px);
+    max-width: calc(min(max(60%, 1440px), 100%) - 48px);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(max(25%, 256px), 1fr));
     overflow: scroll;
     gap: 32px;
     padding-top: 230px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 </style>
