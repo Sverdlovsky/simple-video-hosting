@@ -5,7 +5,7 @@
   let domain: string = window.location.hostname;
   let title: string = domain.split(".")[0];
   let search: string = $state("");
-  let kind: string = $state("");
+  let kind: string = $state("all");
 
   $effect(() => {
     const url = new URL(`https://api.${domain}/videos`);
@@ -128,6 +128,7 @@
   }
 
   .add {
+    height: 40px;
     display: flex;
     flex-direction: row;
     gap: 4px;
@@ -146,12 +147,14 @@
   }
 
   .add p {
-    font-size: 16px;
     color: var(--color-black);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
     line-height: 0px;
   }
 
   .sign {
+    height: 40px;
     display: flex;
     flex-direction: row;
     gap: 4px;
@@ -162,8 +165,9 @@
       transparent
     );
     border-radius: calc(infinity * 1px);
-    padding: 4px 24px 4px 16px;
+    padding: 0px 24px 0px 16px;
     margin: 4px 8px;
+    text-decoration: none;
   }
 
   .sign img {
@@ -176,7 +180,7 @@
     color: var(--color-zinc-400);
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    line-height: 0px;
   }
 
   .search {
@@ -221,15 +225,16 @@
   }
 
   .categories button {
+    height: 40px;
     border: none;
     border-radius: calc(infinity * 1px);
-    padding: 4px 24px 4px 16px;
-    margin: 4px 8px;
+    padding: 0px 24px;
     background-color: var(--color-zinc-900);
     color: var(--color-zinc-400);
     text-decoration: none;
     font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
+    font-weight: var(--font-weight-medium);
+    line-height: 0px;
   }
 
   .categories button:active {
