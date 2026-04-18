@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Video, videos } from "$lib/stores";
+  import type { Video } from "$lib/stores";
+  import { videos } from "$lib/stores";
   import { page } from "$app/state";
 
   let domain: string = window.location.hostname;
