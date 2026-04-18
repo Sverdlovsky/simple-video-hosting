@@ -48,16 +48,11 @@
     }
     prevState = curState;
 
-    const url = new URL(`https://api.${domain}/videos`);
-    url.search = page.url.searchParams.toString();
-
-    const s = search.trim();
-    if (s) {
-      url.searchParams.set("search", s);
-    }
-
-    url.searchParams.set("kind", kind);
-    url.searchParams.set("random", (kind == "all").toString());
+    let url: URL = page.url;
+    url.searchParams.set(
+      "random",
+      (url.searchParams.get("kind") === null).toString(),
+    );
 
     const debounceTimeout = setTimeout(async () => {
       try {
