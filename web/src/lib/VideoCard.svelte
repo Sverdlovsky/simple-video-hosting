@@ -49,7 +49,7 @@
 </script>
 
 <div class="video-card">
-  <a href={`/watch?v=${id}`} class="preview_button">
+  <a href={`/?v=${id}`} class="preview_button">
     <img
       src={`https://media.${domain}/previews/${id}.jpg`}
       alt="prw"
@@ -57,6 +57,7 @@
       loading="lazy"
     />
   </a>
+  <!--
   <div class="tags">
     {#each tags as tag}
       <a
@@ -68,6 +69,7 @@
       </a>
     {/each}
   </div>
+  -->
   <div class="users">
     {#each (users || []).slice(0, 3) as user, i}
       <a
