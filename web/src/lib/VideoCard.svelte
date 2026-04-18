@@ -51,7 +51,7 @@
 <div class="video-card">
   <a href={`/watch?v=${id}`} class="preview_button">
     <img
-      src={`https://media.${domain}/video/previews/${id}.jpg`}
+      src={`https://media.${domain}/previews/${id}.jpg`}
       alt="prw"
       class="preview_image"
       loading="lazy"
