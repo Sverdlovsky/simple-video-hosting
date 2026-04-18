@@ -62,6 +62,22 @@
 
     return () => clearTimeout(debounceTimeout);
   });
+
+  function delKind(): void {
+    const url: URL = page.url;
+
+    url.searchParams.delete("kind");
+
+    goto(url);
+  }
+
+  function setKind(value: string): void {
+    const url: URL = page.url;
+
+    url.searchParams.set("kind", value);
+
+    goto(url);
+  }
 </script>
 
 <div class="navbar">
@@ -102,16 +118,28 @@
       <input type="text" bind:value={search} placeholder="Search..." />
     </div>
     <div class="categories">
-      <button class:active={kind === "all"} onclick={() => (kind = "all")}>
+      <button
+        class:active={!page.url.searchParams.get("kind")}
+        onclick={delKind()}
+      >
         All
       </button>
-      <button class:active={kind === "full"} onclick={() => (kind = "full")}>
+      <button
+        class:active={page.url.searchParams.get("kind") === "full"}
+        onclick={setKind("full")}
+      >
         Fulls
       </button>
-      <button class:active={kind === "clip"} onclick={() => (kind = "clip")}>
+      <button
+        class:active={page.url.searchParams.get("kind") === "clip"}
+        onclick={setKind("clip")}
+      >
         Clips
       </button>
-      <button class:active={kind === "short"} onclick={() => (kind = "short")}>
+      <button
+        class:active={page.url.searchParams.get("kind") === "short"}
+        onclick={setKind("short")}
+      >
         Shorts
       </button>
     </div>

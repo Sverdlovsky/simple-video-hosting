@@ -1,13 +1,14 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { goto } from "$app/navigation";
+  import { page } from "$app/state";
 
   let domain = window.location.hostname;
 
-  $: id = $page.url.searchParams.get("v");
+  let id = page.url.searchParams.get("v");
 </script>
 
 {#if id}
-  <a class="backdrop" href="/">
+  <button class="backdrop" onclick={() => page}>
     <video controls autoplay>
       <source
         src={`https://media.${domain}/video/${id}.mp4`}
@@ -15,7 +16,7 @@
       />
       <track kind="captions" />
     </video>
-  </a>
+  </button>
 {/if}
 
 <style>
@@ -33,7 +34,7 @@
   }
 
   video {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 96%;
+    max-height: 96%;
   }
 </style>
