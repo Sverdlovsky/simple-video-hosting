@@ -71,12 +71,12 @@ struct AppState {
 
 #[derive(Deserialize)]
 struct QueryParams {
-    limit: Option<i64>,
+    limit: Option<i32>,
     search: Option<String>,
     kind: Option<String>,
-    tag: Option<String>,
-    user: Option<String>,
-    app: Option<String>,
+    tag: Option<i32>,
+    user: Option<i32>,
+    app: Option<i32>,
     random: Option<bool>,
 }
 
