@@ -25,7 +25,8 @@
   let prevState: string;
 
   $effect(() => {
-    if ($page) {
+    console.log($page.url);
+    if ($page.url) {
       const curState: string = getState();
       if (curState === prevState) {
         return;
