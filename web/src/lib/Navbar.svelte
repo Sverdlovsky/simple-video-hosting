@@ -10,7 +10,27 @@
   let search: string = $state("");
   let kind: string = $state("all");
 
+  function getState(): string {
+    const params = $page.url.searchParams;
+
+    return JSON.stringify({
+      search: params.get("search"),
+      tag: params.get("tag"),
+      user: params.get("user"),
+      app: params.get("app"),
+      kind: params.get("kind"),
+    });
+  }
+
+  let prevState: string;
+
   $effect(() => {
+    const curState: string = getState();
+    if (JSON.stringify(curState) === JSON.stringify(prevState)) {
+      return;
+    }
+    prevState = curState;
+
     const url = new URL(`https://api.${domain}/videos`);
     url.search = page.url.searchParams.toString();
 
