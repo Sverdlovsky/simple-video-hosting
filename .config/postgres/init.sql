@@ -82,12 +82,12 @@ CREATE TABLE Video_Music_Links (
 
 CREATE OR REPLACE FUNCTION get_user_videos(
     p_email TEXT,
-    p_limit INT DEFAULT NULL,
+    p_limit SMALLINT DEFAULT NULL,
     p_search TEXT DEFAULT NULL,
     p_kind TEXT DEFAULT NULL,
-    p_tag SMALLINT DEFAULT NULL,
-    p_user SMALLINT DEFAULT NULL,
-    p_app SMALLINT DEFAULT NULL,
+    p_tag INT DEFAULT NULL,
+    p_user INT DEFAULT NULL,
+    p_app INT DEFAULT NULL,
     is_random BOOLEAN DEFAULT FALSE
 )
 RETURNS JSON AS $$

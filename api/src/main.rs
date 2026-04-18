@@ -71,7 +71,7 @@ struct AppState {
 
 #[derive(Deserialize)]
 struct QueryParams {
-    limit: Option<i32>,
+    limit: Option<i16>,
     search: Option<String>,
     kind: Option<String>,
     tag: Option<i32>,
