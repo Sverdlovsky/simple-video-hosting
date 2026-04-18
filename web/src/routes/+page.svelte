@@ -21,13 +21,20 @@
     align-items: center;
     gap: 24px;
     padding: 24px;
+
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  main::-webkit-scrollbar {
+    display: none; /* Older Safari and Chromium */
   }
 
   .videos {
     max-width: calc(min(max(60%, 1440px), 100%) - 48px);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(max(25%, 256px), 1fr));
-    overflow: scroll;
     gap: 32px;
     padding-top: 230px;
     padding-left: 24px;

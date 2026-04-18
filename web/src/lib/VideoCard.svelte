@@ -100,6 +100,11 @@
 </div>
 
 <style>
+  a {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
   p {
     grid-area: title;
     line-height: 0px;
@@ -124,7 +129,7 @@
   .preview_image {
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 32px;
+    border-radius: 16px;
   }
 
   .tags {
@@ -160,7 +165,7 @@
   .user_icon {
     width: 32px;
     height: 32px;
-    border-radius: 16px;
+    border-radius: calc(infinity * 1px);
   }
 
   .apps {
