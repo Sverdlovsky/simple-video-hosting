@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Video } from "$lib/stores";
   import { videos } from "$lib/stores";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
 
   let domain: string = window.location.hostname;
   let title: string = window.location.hostname.split(".")[0];
@@ -11,7 +11,7 @@
   let kind: string = $state("all");
 
   function getState(): string {
-    const params = $page.url.searchParams;
+    const params = page.url.searchParams;
 
     return JSON.stringify({
       search: params.get("search"),
@@ -25,14 +25,11 @@
   let prevState: string;
 
   $effect(() => {
-    console.log($page.url);
-    if ($page.url) {
-      const curState: string = getState();
-      if (curState === prevState) {
-        return;
-      }
-      prevState = curState;
+    const curState: string = getState();
+    if (curState === prevState) {
+      return;
     }
+    prevState = curState;
 
     const url = new URL(`https://api.${domain}/videos`);
     url.search = page.url.searchParams.toString();
