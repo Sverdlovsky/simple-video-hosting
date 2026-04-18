@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Video } from "$lib/stores";
   import { videos } from "$lib/stores";
-  import { page } from "$app/state";
+  import { page } from "$app/stores";
 
   let domain: string = window.location.hostname;
   let title: string = window.location.hostname.split(".")[0];
@@ -26,7 +26,7 @@
 
   $effect(() => {
     const curState: string = getState();
-    if (JSON.stringify(curState) === JSON.stringify(prevState)) {
+    if (curState === prevState) {
       return;
     }
     prevState = curState;
