@@ -51,7 +51,7 @@
           <p>Add</p>
         </button>
         <a href={`https://auth.${domain}/with/google`} class="sign">
-          <img src="/svg/sign.svg" alt="o" />
+          <img src="/svg/profile.svg" alt="o" />
           <p>Sign in</p>
         </a>
       </div>
@@ -125,6 +125,9 @@
   .actions {
     display: flex;
     flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    text-decoration: none;
   }
 
   .add {
