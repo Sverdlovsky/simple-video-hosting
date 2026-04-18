@@ -2,7 +2,8 @@
   import "../app.css";
   import Navbar from "$lib/Navbar.svelte";
 
-  const title: string = window.location.hostname.split(".")[0];
+  let title: string = window.location.hostname.split(".")[0];
+  title = title.charAt(0).toUpperCase() + title.slice(1);
 </script>
 
 <svelte:head>
