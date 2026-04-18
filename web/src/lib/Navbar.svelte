@@ -136,8 +136,8 @@
     background-color: var(--color-zinc-200);
     border: none;
     border-radius: calc(infinity * 1px);
-    padding: 4px 24px 4px 16px;
-    margin: 4px 8px;
+    padding-left: 16px;
+    padding-right: 24px;
   }
 
   .add img {
@@ -165,8 +165,8 @@
       transparent
     );
     border-radius: calc(infinity * 1px);
-    padding: 0px 24px 0px 16px;
-    margin: 4px 8px;
+    padding-left: 16px;
+    padding-right: 24px;
     text-decoration: none;
   }
 
@@ -195,7 +195,6 @@
     );
     border: 1px solid color-mix(in oklab, var(--ring) 50%, transparent);
     border-radius: calc(infinity * 1px);
-    flex-direction: row;
     align-items: center;
   }
 
