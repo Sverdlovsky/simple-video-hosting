@@ -11,7 +11,7 @@
   let kind: string = $state("all");
 
   function getState(): string {
-    const params = $page.url.searchParams;
+    const params = page.url.searchParams;
 
     return JSON.stringify({
       search: params.get("search"),
@@ -22,7 +22,7 @@
     });
   }
 
-  let prevState: string = "init";
+  let prevState: string;
 
   $effect(() => {
     const curState: string = getState();
