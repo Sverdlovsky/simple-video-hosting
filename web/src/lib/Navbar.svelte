@@ -42,22 +42,40 @@
   <div class="navbox">
     <div class="top">
       <a href="/" class="title">
-        <img src="/svg/favicon.svg" alt=">" />
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M7 8.69951V15.3005C7 16.8255 8.63823 17.7894 9.97129 17.0488L9.48564 16.1746L9.97129 17.0488L15.9122 13.7483C17.2838 12.9863 17.2838 11.0137 15.9122 10.2517L9.97129 6.9512C8.63822 6.21061 7 7.17455 7 8.69951Z"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
         <p>{title}</p>
       </a>
       <div class="actions">
         <button class="add">
-          <img src="/svg/add.svg" alt="+" />
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M13 11h7a1 1 0 0 1 0 2h-7v7a1 1 0 0 1-2 0v-7H4a1 1 0 0 1 0-2h7V4a1 1 0 0 1 2 0v7z"
+            />
+          </svg>
           <p>Add</p>
         </button>
         <a href={`https://auth.${domain}/with/google`} class="sign">
-          <img src="/svg/profile.svg" alt="o" />
+          <svg viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
           <p>Sign in</p>
         </a>
       </div>
     </div>
     <div class="search">
-      <img src="/svg/search.svg" alt="Q" />
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M20.207 18.793L16.6 15.184a7.027 7.027 0 1 0-1.416 1.416l3.609 3.609a1 1 0 0 0 1.414-1.416zM6 11a5 5 0 1 1 5 5 5.006 5.006 0 0 1-5-5z"
+        />
+      </svg>
       <input type="text" bind:value={search} placeholder="Search..." />
     </div>
     <div class="categories">
@@ -111,7 +129,7 @@
     color: var(--color-white);
   }
 
-  .title img {
+  .title svg {
     width: 48px;
     height: 48px;
   }
@@ -143,10 +161,10 @@
     padding-right: 24px;
   }
 
-  .add img {
+  .add svg {
     width: 16px;
     height: 16px;
-    color: var(--color-black);
+    fill: var(--color-black);
   }
 
   .add p {
@@ -173,10 +191,13 @@
     text-decoration: none;
   }
 
-  .sign img {
+  .sign svg {
     width: 16px;
     height: 16px;
-    color: var(--color-zinc-400);
+    stroke: var(--color-zinc-400);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .sign p {
@@ -201,10 +222,10 @@
     align-items: center;
   }
 
-  .search img {
+  .search svg {
     width: 20px;
     height: 20px;
-    color: var(--color-zinc-500);
+    fill: var(--color-zinc-500);
     padding: 14px;
   }
 
