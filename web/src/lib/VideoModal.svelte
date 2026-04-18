@@ -37,6 +37,8 @@
     gap: 24px;
     padding: 24px;
     background-color: #000000bf;
+    outline: none;
+    border: none;
   }
 
   video {
