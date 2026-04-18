@@ -48,7 +48,8 @@
     }
     prevState = curState;
 
-    let url: URL = page.url;
+    const url = new URL(`https://api.${domain}/videos`);
+    url.search = page.url.search;
     url.searchParams.set(
       "random",
       (url.searchParams.get("kind") === null).toString(),
