@@ -7,7 +7,7 @@
 </script>
 
 {#if id}
-  <button class="backdrop" onclick={() => page.url.searchParams.delete("v")}>
+  <button onclick={() => page.url.searchParams.delete("v")}>
     <video controls autoplay>
       <source
         src={`https://media.${domain}/video/${id}.mp4`}
@@ -19,7 +19,7 @@
 {/if}
 
 <style>
-  a {
+  button {
     z-index: 3;
     position: fixed;
     inset: 0;
