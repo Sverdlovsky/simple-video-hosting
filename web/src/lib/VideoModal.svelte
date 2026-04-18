@@ -7,10 +7,10 @@
 </script>
 
 {#if id}
-  <a class="backdrop" href={domain}>
+  <a class="backdrop" href="/">
     <video controls autoplay>
       <source
-        src={`https://media.${domain}/video/${id}.mp4`}
+        src={`https://media.${domain}/video:/${id}.mp4`}
         type="video/mp4"
       />
       <track kind="captions" />
