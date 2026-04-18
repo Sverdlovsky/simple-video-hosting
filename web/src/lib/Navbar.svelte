@@ -303,7 +303,7 @@
     line-height: 0px;
   }
 
-  .categories button:active {
+  .active {
     background-color: var(--color-white);
     color: var(--color-black);
   }
