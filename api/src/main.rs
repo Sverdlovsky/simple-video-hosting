@@ -139,7 +139,7 @@ async fn videos(
     };
 
     let row: (serde_json::Value,) = match sqlx::query_as(
-        "SELECT video.get_user_videos($1, $2, $3, $4, $5::uuid, $6::uuid, $7::uuid, $8);",
+        "SELECT get_user_videos($1, $2, $3, $4, $5::uuid, $6::uuid, $7::uuid, $8);",
     )
     .bind(&email)
     .bind(&params.limit)
@@ -179,8 +179,8 @@ async fn get_video(
     let has_access: (bool,) = match sqlx::query_as(
         "SELECT EXISTS (
             SELECT 1
-            FROM Video.Userpins up
-            JOIN Public.Users u ON u.id = up.uid
+            FROM Video_User_Links up
+            JOIN Users u ON u.id = up.uid
             WHERE u.email = $1 AND up.vid = $2::uuid
         )",
     )
