@@ -4,10 +4,15 @@
   let domain = window.location.hostname;
 
   let id = $derived(page.url.searchParams.get("v"));
+
+  function vDel() {
+    let url = page.url;
+    url.searchParams.delete("v");
+  }
 </script>
 
 {#if id}
-  <a href={page.url.searchParams.delete("v")}>
+  <button onclick={() => vDel()}>
     <video controls autoplay>
       <source
         src={`https://media.${domain}/video/${id}.mp4`}
@@ -19,7 +24,7 @@
 {/if}
 
 <style>
-  a {
+  button {
     z-index: 3;
     position: fixed;
     inset: 0;
