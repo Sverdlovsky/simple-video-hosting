@@ -138,6 +138,7 @@
   .title svg {
     width: 48px;
     height: 48px;
+    fill: none;
     stroke: var(--color-white);
     stroke-width: 2;
     stroke-linecap: round;
@@ -204,6 +205,7 @@
   .sign svg {
     width: 16px;
     height: 16px;
+    fill: none;
     stroke: var(--color-zinc-400);
     stroke-width: 2;
     stroke-linecap: round;
