@@ -111,6 +111,7 @@
     grid-area: title;
     line-height: 0px;
     text-align: center;
+    color: var(--color-white);
   }
 
   .video-card {
