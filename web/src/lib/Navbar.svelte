@@ -17,11 +17,14 @@
     }
 
     url.searchParams.set("kind", kind);
-    url.searchParams.set("random", (kind == "All").toString());
+    url.searchParams.set("random", (kind == "all").toString());
 
     const debounceTimeout = setTimeout(async () => {
       try {
-        const res = await fetch(url);
+        const res = await fetch(url, {
+          method: "GET",
+          credentials: "include",
+        });
         if (!res.ok) {
           console.error("Request error");
           videos.set([]);
