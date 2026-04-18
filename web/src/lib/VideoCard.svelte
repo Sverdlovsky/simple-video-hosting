@@ -76,7 +76,7 @@
         style="z-index: {users.length - i}"
       >
         <img
-          src={`https://media.${$domain}/avatars/${user.id}.png`}
+          src={`https://media.${domain}/avatars/${user.id}.png`}
           alt={user.email}
           class="user_icon"
           loading="lazy"
@@ -89,7 +89,7 @@
     {#each (apps || []).slice(0, 3) as app, i}
       <a href={app.link} class="app_button" style="z-index: {apps.length - i}">
         <img
-          src={`https://media.${$domain}/apps/${app.id}.png`}
+          src={`https://media.${domain}/apps/${app.id}.png`}
           alt={app.title}
           class="app_icon"
           loading="lazy"

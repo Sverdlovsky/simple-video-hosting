@@ -100,12 +100,15 @@ BEGIN
     END IF;
 
     RETURN (
-        SELECT json_agg(x ORDER BY
-            CASE
-                WHEN is_random AND p_search IS NULL
-                THEN random()
-                ELSE EXTRACT(EPOCH FROM cat)
-            END DESC
+        SELECT COALESCE(
+            json_agg(x ORDER BY
+                CASE
+                    WHEN is_random AND p_search IS NULL
+                    THEN random()
+                    ELSE EXTRACT(EPOCH FROM cat)
+                END DESC
+            ),
+            '[]'::json
         ) FROM (
             SELECT v.cat, json_build_object(
                 'id', to_hex(v.id::integer),
@@ -161,6 +164,7 @@ BEGIN
                     WHEN 'full' THEN 0
                     WHEN 'clip' THEN 1
                     WHEN 'short' THEN 2
+                    ELSE v.kind
                 END
             ) AND (
                 p_tag IS NULL
