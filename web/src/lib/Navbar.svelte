@@ -45,9 +45,6 @@
         <svg viewBox="0 0 24 24">
           <path
             d="M7 8.69951V15.3005C7 16.8255 8.63823 17.7894 9.97129 17.0488L9.48564 16.1746L9.97129 17.0488L15.9122 13.7483C17.2838 12.9863 17.2838 11.0137 15.9122 10.2517L9.97129 6.9512C8.63822 6.21061 7 7.17455 7 8.69951Z"
-            stroke="#000000"
-            stroke-width="2"
-            stroke-linecap="round"
           />
         </svg>
         <p>{title}</p>
@@ -126,18 +123,21 @@
     gap: 8px;
     align-items: center;
     text-decoration: none;
-    color: var(--color-white);
   }
 
   .title svg {
     width: 48px;
     height: 48px;
+    stroke: var(--color-white);
+    stroke-width: 2;
+    stroke-linecap: round;
   }
 
   .title p {
     font-size: var(--text-2xl);
     line-height: 0px;
     font-weight: var(--font-weight-medium);
+    color: var(--color-white);
   }
 
   .actions {
