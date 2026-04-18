@@ -11,7 +11,7 @@
   let kind: string = $state("all");
 
   function getState(): string {
-    const params = page.url.searchParams;
+    const params = $page.url.searchParams;
 
     return JSON.stringify({
       search: params.get("search"),
@@ -25,11 +25,13 @@
   let prevState: string;
 
   $effect(() => {
-    const curState: string = getState();
-    if (curState === prevState) {
-      return;
+    if ($page) {
+      const curState: string = getState();
+      if (curState === prevState) {
+        return;
+      }
+      prevState = curState;
     }
-    prevState = curState;
 
     const url = new URL(`https://api.${domain}/videos`);
     url.search = page.url.searchParams.toString();
