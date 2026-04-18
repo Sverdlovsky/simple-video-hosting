@@ -20,7 +20,7 @@
       />
       <track kind="captions" />
     </video>
-  </a>
+  </button>
 {/if}
 
 <style>
