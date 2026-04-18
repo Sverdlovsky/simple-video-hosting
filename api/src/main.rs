@@ -84,7 +84,8 @@ struct QueryParams {
 async fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt::init();
 
-    let dsn = env::var("DATABASE_URL").context("Environment variable DATABASE_URL not set!")?;
+    let domain = env::var("DOMAIN").context("Environment variable DOMAIN is not set!")?;
+    let dsn = env::var("DATABASE_URL").context("Environment variable DATABASE_URL is not set!")?;
     let pool = PgPoolOptions::new()
         .max_connections(num_cpus::get() as u32 * 2)
         .idle_timeout(Duration::from_secs(300))
@@ -99,15 +100,19 @@ async fn main() -> anyhow::Result<()> {
 
     let cors = CorsLayer::new()
         .allow_origin([
-            "https://zenime.su".parse::<HeaderValue>().unwrap(),
-            "https://learn.zenime.su".parse::<HeaderValue>().unwrap(),
+            format!("https://{}", domain)
+                .parse::<HeaderValue>()
+                .unwrap(),
+            format!("https://media.{}", domain)
+                .parse::<HeaderValue>()
+                .unwrap(),
         ])
         .allow_credentials(true)
         .allow_methods([Method::GET, Method::POST])
         .allow_headers([header::CONTENT_TYPE]);
 
     let app = Router::new()
-        .route("/api/videos", get(videos))
+        .route("/videos", get(videos))
         .route("/video/get/{filename}", get(get_video))
         .layer(Extension(Arc::new(state)))
         .layer(cors);
@@ -162,7 +167,6 @@ async fn get_video(
     Extension(state): Extension<Arc<AppState>>,
     Path(filename): Path<String>,
 ) -> impl IntoResponse {
-    println!("Connection");
     let email = match state.auth.validate(&jar) {
         Ok(email) => email,
         Err(_) => {
