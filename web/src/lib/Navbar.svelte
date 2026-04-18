@@ -107,6 +107,10 @@
     flex-direction: column;
     border-bottom: 1px solid var(--color-zinc-900);
     align-items: center;
+
+    background: #11111111;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
   }
 
   .navbox {
