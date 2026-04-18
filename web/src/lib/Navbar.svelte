@@ -22,7 +22,7 @@
     });
   }
 
-  let prevState: string;
+  let prevState: string = "init";
 
   $effect(() => {
     const curState: string = getState();
