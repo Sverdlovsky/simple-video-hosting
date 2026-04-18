@@ -120,25 +120,25 @@
     <div class="categories">
       <button
         class:active={!page.url.searchParams.get("kind")}
-        onclick={delKind()}
+        onclick={() => delKind()}
       >
         All
       </button>
       <button
         class:active={page.url.searchParams.get("kind") === "full"}
-        onclick={setKind("full")}
+        onclick={() => setKind("full")}
       >
         Fulls
       </button>
       <button
         class:active={page.url.searchParams.get("kind") === "clip"}
-        onclick={setKind("clip")}
+        onclick={() => setKind("clip")}
       >
         Clips
       </button>
       <button
         class:active={page.url.searchParams.get("kind") === "short"}
-        onclick={setKind("short")}
+        onclick={() => setKind("short")}
       >
         Shorts
       </button>
