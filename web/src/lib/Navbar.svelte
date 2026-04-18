@@ -9,7 +9,7 @@
   title = title.charAt(0).toUpperCase() + title.slice(1);
 
   let search: string = $state("");
-  $: kind = page.url.searchParams.get("kind");
+  let kind = $derived(page.url.searchParams.get("kind"));
 
   function getState(): string {
     const params = page.url.searchParams;
