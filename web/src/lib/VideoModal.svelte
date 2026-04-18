@@ -7,7 +7,7 @@
 </script>
 
 {#if id}
-  <button onclick={() => page.url.searchParams.delete("v")}>
+  <a href={page.url.searchParams.delete("v")}>
     <video controls autoplay>
       <source
         src={`https://media.${domain}/video/${id}.mp4`}
@@ -15,11 +15,11 @@
       />
       <track kind="captions" />
     </video>
-  </button>
+  </a>
 {/if}
 
 <style>
-  button {
+  a {
     z-index: 3;
     position: fixed;
     inset: 0;
