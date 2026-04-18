@@ -9,7 +9,7 @@
   title = title.charAt(0).toUpperCase() + title.slice(1);
 
   let search: string = $state("");
-  let kind: string = $state("all");
+  $: kind = page.url.searchParams.get("kind");
 
   function getState(): string {
     const params = page.url.searchParams;
@@ -119,28 +119,14 @@
       <input type="text" bind:value={search} placeholder="Search..." />
     </div>
     <div class="categories">
-      <button
-        class:active={!$page.url.searchParams.get("kind")}
-        onclick={() => delKind()}
-      >
-        All
-      </button>
-      <button
-        class:active={$page.url.searchParams.get("kind") === "full"}
-        onclick={() => setKind("full")}
-      >
+      <button class:active={!kind} onclick={() => delKind()}> All </button>
+      <button class:active={kind === "full"} onclick={() => setKind("full")}>
         Fulls
       </button>
-      <button
-        class:active={$page.url.searchParams.get("kind") === "clip"}
-        onclick={() => setKind("clip")}
-      >
+      <button class:active={kind === "clip"} onclick={() => setKind("clip")}>
         Clips
       </button>
-      <button
-        class:active={$page.url.searchParams.get("kind") === "short"}
-        onclick={() => setKind("short")}
-      >
+      <button class:active={kind === "short"} onclick={() => setKind("short")}>
         Shorts
       </button>
     </div>
