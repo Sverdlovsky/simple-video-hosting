@@ -3,11 +3,11 @@
 
   let domain = window.location.hostname;
 
-  let id = page.url.searchParams.get("v");
+  let id = $derived(page.url.searchParams.get("v"));
 </script>
 
 {#if id}
-  <button class="backdrop" onclick={() => page}>
+  <button class="backdrop" onclick={() => page.url.searchParams.delete("v")}>
     <video controls autoplay>
       <source
         src={`https://media.${domain}/video/${id}.mp4`}
