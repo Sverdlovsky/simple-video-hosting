@@ -2,6 +2,7 @@
   import type { Video } from "$lib/stores";
   import { videos } from "$lib/stores";
   import { page } from "$app/state";
+  import { goto } from "$app/navigation";
 
   let domain: string = window.location.hostname;
   let title: string = window.location.hostname.split(".")[0];
@@ -20,6 +21,22 @@
       app: params.get("app"),
       kind: params.get("kind"),
     });
+  }
+
+  function delKind(): void {
+    const url: URL = page.url;
+
+    url.searchParams.delete("kind");
+
+    goto(url, { replaceState: true });
+  }
+
+  function setKind(value: string): void {
+    const url: URL = page.url;
+
+    url.searchParams.set("kind", value);
+
+    goto(url, { replaceState: true });
   }
 
   let prevState: string;
@@ -62,22 +79,6 @@
 
     return () => clearTimeout(debounceTimeout);
   });
-
-  function delKind(): void {
-    const url: URL = page.url;
-
-    url.searchParams.delete("kind");
-
-    goto(url);
-  }
-
-  function setKind(value: string): void {
-    const url: URL = page.url;
-
-    url.searchParams.set("kind", value);
-
-    goto(url);
-  }
 </script>
 
 <div class="navbar">
