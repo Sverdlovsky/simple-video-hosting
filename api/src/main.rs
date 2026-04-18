@@ -162,6 +162,7 @@ async fn get_video(
     Extension(state): Extension<Arc<AppState>>,
     Path(filename): Path<String>,
 ) -> impl IntoResponse {
+    println!("Connection");
     let email = match state.auth.validate(&jar) {
         Ok(email) => email,
         Err(_) => {
