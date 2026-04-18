@@ -4,7 +4,9 @@
   import { page } from "$app/state";
 
   let domain: string = window.location.hostname;
-  let title: string = domain.split(".")[0];
+  let title: string = window.location.hostname.split(".")[0];
+  title = title.charAt(0).toUpperCase() + title.slice(1);
+
   let search: string = $state("");
   let kind: string = $state("all");
 

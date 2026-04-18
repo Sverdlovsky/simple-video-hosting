@@ -5,7 +5,7 @@
 
 <main>
   <div class="videos">
-    {#each videos as video}
+    {#each $videos as video}
       <VideoCard {...video} />
     {/each}
   </div>
