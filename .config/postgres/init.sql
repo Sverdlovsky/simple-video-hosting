@@ -82,7 +82,7 @@ CREATE TABLE Video_Music_Links (
 
 CREATE OR REPLACE FUNCTION get_user_videos(
     p_email TEXT,
-    p_limit BIGINT DEFAULT NULL,
+    p_limit INT DEFAULT NULL,
     p_search TEXT DEFAULT NULL,
     p_kind TEXT DEFAULT NULL,
     p_tag SMALLINT DEFAULT NULL,

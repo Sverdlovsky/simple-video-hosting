@@ -138,26 +138,25 @@ async fn videos(
         }
     };
 
-    let row: (serde_json::Value,) = match sqlx::query_as(
-        "SELECT get_user_videos($1, $2, $3, $4, $5::uuid, $6::uuid, $7::uuid, $8);",
-    )
-    .bind(&email)
-    .bind(&params.limit)
-    .bind(&params.search)
-    .bind(&params.kind)
-    .bind(&params.tag)
-    .bind(&params.user)
-    .bind(&params.app)
-    .bind(&params.random)
-    .fetch_one(&state.db)
-    .await
-    {
-        Ok(r) => r,
-        Err(e) => {
-            eprintln!("DB error: {}", e);
-            return (StatusCode::INTERNAL_SERVER_ERROR, "db error").into_response();
-        }
-    };
+    let row: (serde_json::Value,) =
+        match sqlx::query_as("SELECT get_user_videos($1, $2, $3, $4, $5, $6, $7, $8);")
+            .bind(&email)
+            .bind(&params.limit)
+            .bind(&params.search)
+            .bind(&params.kind)
+            .bind(&params.tag)
+            .bind(&params.user)
+            .bind(&params.app)
+            .bind(&params.random)
+            .fetch_one(&state.db)
+            .await
+        {
+            Ok(r) => r,
+            Err(e) => {
+                eprintln!("DB error: {}", e);
+                return (StatusCode::INTERNAL_SERVER_ERROR, "db error").into_response();
+            }
+        };
 
     (StatusCode::OK, Json(row.0)).into_response()
 }
