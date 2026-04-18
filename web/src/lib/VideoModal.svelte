@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import { goto } from "$app/navigation";
 
   let domain = window.location.hostname;
 
@@ -8,6 +9,7 @@
   function vDel() {
     let url = page.url;
     url.searchParams.delete("v");
+    goto(url);
   }
 </script>
 
