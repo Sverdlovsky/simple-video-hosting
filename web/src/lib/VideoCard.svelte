@@ -84,6 +84,12 @@
 </div>
 
 <style>
+  button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+
   p {
     grid-area: title;
     line-height: 0px;
@@ -106,6 +112,7 @@
     grid-area: preview;
     width: 100%;
     aspect-ratio: 16 / 9;
+    display: block;
     border-radius: 16px;
     background-color: #11111111;
     overflow: hidden;
