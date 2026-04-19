@@ -110,6 +110,7 @@
 
   .preview {
     grid-area: preview;
+    position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 16px;
