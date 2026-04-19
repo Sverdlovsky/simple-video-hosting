@@ -149,7 +149,7 @@
     display: flex;
     flex-direction: column;
     padding: 24px;
-    gap: 16px;
+    gap: 32px;
   }
 
   .top {
@@ -295,7 +295,11 @@
     border: none;
     border-radius: calc(infinity * 1px);
     padding: 0px 24px;
-    background-color: color-mix(in oklab, var(--color-zinc-900) 50%, transparent);
+    background-color: color-mix(
+      in oklab,
+      var(--color-zinc-900) 50%,
+      transparent
+    );
     color: var(--color-zinc-400);
     text-decoration: none;
     font-size: var(--text-sm);
@@ -308,7 +312,7 @@
     color: var(--color-white);
     transition:
       background-color 0.3s ease-in-out,
-      color: 0.3s ease-in-out;
+      color 0.3s ease-in-out;
   }
 
   .categories button.active {
