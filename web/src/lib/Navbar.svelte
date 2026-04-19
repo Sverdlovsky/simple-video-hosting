@@ -131,7 +131,7 @@
 
 <style>
   .navbar {
-    z-index: 2;
+    z-index: 5;
     position: fixed;
     width: 100%;
     display: flex;

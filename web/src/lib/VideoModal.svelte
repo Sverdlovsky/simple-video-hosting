@@ -27,7 +27,7 @@
 
 <style>
   button {
-    z-index: 3;
+    z-index: 10;
     position: fixed;
     inset: 0;
     display: flex;
