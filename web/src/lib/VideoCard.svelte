@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { page } from "$app/state";
+  import { goto } from "$app/navigation";
+
   const domain: string = window.location.hostname;
 
   export let id: string;
