@@ -295,12 +295,20 @@
     border: none;
     border-radius: calc(infinity * 1px);
     padding: 0px 24px;
-    background-color: var(--color-zinc-900);
+    background-color: color-mix(in oklab, var(--color-zinc-900) 50%, transparent);
     color: var(--color-zinc-400);
     text-decoration: none;
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
     line-height: 0px;
+  }
+
+  .categories button:hover {
+    background-color: var(--color-zinc-900);
+    color: var(--color-white);
+    transition:
+      background-color 0.3s ease-in-out,
+      color: 0.3s ease-in-out;
   }
 
   .categories button.active {

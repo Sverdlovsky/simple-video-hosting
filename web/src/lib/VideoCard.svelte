@@ -114,7 +114,11 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 16px;
-    background-color: #11111111;
+    background-color: color-mix(
+      in oklab,
+      var(--color-zinc-900) 50%,
+      transparent
+    );
     overflow: hidden;
   }
 
