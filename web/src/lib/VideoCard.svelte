@@ -112,7 +112,6 @@
     grid-area: preview;
     width: 100%;
     aspect-ratio: 16 / 9;
-    display: block;
     border-radius: 16px;
     background-color: #11111111;
     overflow: hidden;
@@ -120,7 +119,7 @@
 
   .preview svg {
     z-index: 1;
-    position: fixed;
+    position: absolute;
     fill: none;
     stroke: var(--color-black);
     stroke-width: 2;
@@ -131,7 +130,7 @@
 
   .preview img {
     z-index: 2;
-    position: fixed;
+    position: absolute;
     width: 100%;
   }
 
