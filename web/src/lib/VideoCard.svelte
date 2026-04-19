@@ -120,21 +120,25 @@
 
   .preview svg {
     z-index: 1;
+    width: 25%;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     fill: none;
     stroke: var(--color-black);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    margin: 100%;
   }
 
   .preview img {
     z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .tags {
