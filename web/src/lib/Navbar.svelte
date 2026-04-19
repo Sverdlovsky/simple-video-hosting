@@ -130,6 +130,12 @@
 </div>
 
 <style>
+  button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+
   .navbar {
     z-index: 5;
     position: fixed;
