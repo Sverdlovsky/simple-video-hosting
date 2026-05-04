@@ -112,6 +112,8 @@ async fn main() -> anyhow::Result<()> {
         .allow_headers([header::CONTENT_TYPE]);
 
     let app = Router::new()
+        .route("/health", get(health))
+        .route("/ready", get(ready))
         .route("/videos", get(videos))
         .route("/video/get/{filename}", get(get_video))
         .layer(Extension(Arc::new(state)))
@@ -124,6 +126,14 @@ async fn main() -> anyhow::Result<()> {
     serve(listener, app.into_make_service()).await?;
 
     Ok(())
+}
+
+async fn health() -> StatusCode {
+    StatusCode::OK
+}
+
+async fn ready() -> StatusCode {
+    StatusCode::OK
 }
 
 async fn videos(
